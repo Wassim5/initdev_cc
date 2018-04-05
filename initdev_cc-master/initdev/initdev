@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+
+int main(int argc,char ** argv)
+{
+if(argc == 1 ){ printf("Expected arguments , please check the help : initdev -help ") ; return 1 ; } if(50<=strlen(argv[1])) { 
+printf("Expected arguments : file name is too long") ; 
+return 1 ;
+
+}
+if(strcmp(argv[1],"-h") ==0 || 0==strcmp(argv[1],"-help")){
+
+
+printf("InitDev un simple logiciel pour vous aider a creer vos projet \n La synthaxe : initdev [-help] [-h] [nom_projet [-type]]  \n  -h ou -help pour afficher  l\'aide  \n nom projet pour specifier le nom du dossier  \n -type pour specifier le language de votre projet ( -c // -cpp ou -c++ // -py // -Latex // -BEAMER ) \n L\'auteur de l\'application : Wassim Bouriche \n ") ;
+
+
+
+return 0 ; 
+}
+
+
+
+
+char c[114] ;char file [50]; strcpy(file,argv[1]);
+ sprintf(c,".//fichier.sh %s", file);
+system(c);
+
+if( argc >= 3 ) { int i = 0 ; 
+if ( 0==strcmp(argv[2],"-c") ){ i++ ; sprintf(c,"rm %s//main ;cp makfiles//main.c %s ",file,file); } 
+if ( 0==strcmp(argv[2],"-c++")||0==strcmp(argv[2],"-cpp") ){ i++ ;sprintf(c,"rm %s//main ;cp makfiles//main.cpp %s ",file,file); } 
+if ( 0==strcmp(argv[2],"-py") ){ i++;sprintf(c,"rm %s//main ;cp makfiles//main.py %s ",file,file);}
+if ( 0==strcmp(argv[2],"-Latex") ){ i++;sprintf(c,"rm %s//main ;cat makfiles//latexMin.tex 1>%s//main.tex ",file,file); } 
+if ( 0==strcmp(argv[2],"-BEAMER") ){ i++ ; sprintf(c,"rm %s//main ;cp makfiles//main.tex %s",file,file);  } 
+if(i==0) {printf("Verifier l aide pour plus d info language precisee inconu ");}
+else {system (c) ;}
+
+
+
+
+}
+
+return 0;
+}
